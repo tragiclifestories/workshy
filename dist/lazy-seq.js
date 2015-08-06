@@ -28,13 +28,6 @@ var LazySeq = (function () {
         value: function value() {
             return this._generator.apply(this, this._args);
         }
-
-        /**
-         * Returns a lazy sequence of the first n
-         * values of the callee.
-         * @param  {integer}
-         * @return {LazySeq}
-         */
     }, {
         key: 'take',
         value: function take(n) {
@@ -444,6 +437,22 @@ var LazySeq = (function () {
             });
 
             return new LazySeq(takeWhileGen, [fn], this);
+        }
+    }, {
+        key: 'takeUntil',
+        value: function takeUntil(fn) {
+            var inverted = function inverted(x) {
+                return !fn(x);
+            };
+            return this.takeWhile(inverted);
+        }
+    }, {
+        key: 'dropUntil',
+        value: function dropUntil(fn) {
+            var inverted = function inverted(x) {
+                return !fn(x);
+            };
+            return this.dropWhile(inverted);
         }
     }, {
         key: 'toArray',

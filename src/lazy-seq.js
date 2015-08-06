@@ -10,12 +10,7 @@ class LazySeq {
     [Symbol.iterator]() {
         return this._generator.apply(this, this._args);
     }
-    /**
-     * Returns a lazy sequence of the first n
-     * values of the callee.
-     * @param  {integer}
-     * @return {LazySeq}
-     */
+
     take(n) {
         return new LazySeq(takeGen, [n], this);
     }
@@ -68,6 +63,16 @@ class LazySeq {
         }
 
         return new LazySeq(takeWhileGen, [fn], this);
+    }
+
+    takeUntil(fn) {
+        let inverted = (x) => !(fn(x));
+        return this.takeWhile(inverted);
+    }
+
+    dropUntil(fn) {
+         let inverted = (x) => !(fn(x));
+        return this.dropWhile(inverted);   
     }
 
     toArray() {

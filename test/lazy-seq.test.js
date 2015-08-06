@@ -78,11 +78,27 @@ describe('class LazySeq', function () {
         });
     });
 
-    describe('takeWhile', function () {
+    describe('.takeWhile', function () {
         it('takes values until predicate is false', function () {
             let twSeq = intSeq(4).takeWhile((x) => (x * x) % 6 !== 0),
-            [a, b, c] = twSeq;
-        expect([a, b, c]).to.eql([4, 5, undefined]);
+                [a, b, c] = twSeq;
+            expect([a, b, c]).to.eql([4, 5, undefined]);
+        });
+    });
+
+    describe('.takeUntil', function () {
+        it('takes values until predicate is true', function () {
+            let tuSeq = intSeq(4).takeUntil((x) => (x * x) % 6 === 0),
+                [a, b, c] = tuSeq;
+            expect([a, b, c]).to.eql([4, 5, undefined]);
+        });
+    });
+
+    describe('.dropUntil', function () {
+        it('ignores values until predicate is true', function () {
+            let duSeq = intSeq(1).dropUntil((x) => x % 12 === 0),
+                [a, b, c] = duSeq;
+            expect([a, b, c]).to.eql([12, 13, 14]);
         });
     });
 
