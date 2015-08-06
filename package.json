@@ -1,0 +1,15 @@
+{
+  "name": "workshy",
+  "version": "0.0.1",
+  "description": "Toy project for lazy sequences and operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "functional",
+    "es6"
+  ],
+  "author": "tragiclifestories",
+  "license": "MIT"
+}
