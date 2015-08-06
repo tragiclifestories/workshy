@@ -34,63 +34,32 @@ var Sequence = (function () {
             return new Sequence(_take2['default'], [n], this);
         }
     }, {
-        key: 'toArray',
-        value: function toArray() {
-            var result = [];
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = this[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var val = _step.value;
-
-                    result.push(val);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator['return']) {
-                        _iterator['return']();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-
-            return result;
-        }
-    }, {
         key: 'map',
         value: function map(fn) {
             var mapGen = regeneratorRuntime.mark(function mapGen(fn, iterable) {
-                var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, val;
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, val;
 
                 return regeneratorRuntime.wrap(function mapGen$(context$3$0) {
                     while (1) switch (context$3$0.prev = context$3$0.next) {
                         case 0:
-                            _iteratorNormalCompletion2 = true;
-                            _didIteratorError2 = false;
-                            _iteratorError2 = undefined;
+                            _iteratorNormalCompletion = true;
+                            _didIteratorError = false;
+                            _iteratorError = undefined;
                             context$3$0.prev = 3;
-                            _iterator2 = iterable[Symbol.iterator]();
+                            _iterator = iterable[Symbol.iterator]();
 
                         case 5:
-                            if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
                                 context$3$0.next = 12;
                                 break;
                             }
 
-                            val = _step2.value;
+                            val = _step.value;
                             context$3$0.next = 9;
                             return fn(val);
 
                         case 9:
-                            _iteratorNormalCompletion2 = true;
+                            _iteratorNormalCompletion = true;
                             context$3$0.next = 5;
                             break;
 
@@ -101,26 +70,26 @@ var Sequence = (function () {
                         case 14:
                             context$3$0.prev = 14;
                             context$3$0.t0 = context$3$0['catch'](3);
-                            _didIteratorError2 = true;
-                            _iteratorError2 = context$3$0.t0;
+                            _didIteratorError = true;
+                            _iteratorError = context$3$0.t0;
 
                         case 18:
                             context$3$0.prev = 18;
                             context$3$0.prev = 19;
 
-                            if (!_iteratorNormalCompletion2 && _iterator2['return']) {
-                                _iterator2['return']();
+                            if (!_iteratorNormalCompletion && _iterator['return']) {
+                                _iterator['return']();
                             }
 
                         case 21:
                             context$3$0.prev = 21;
 
-                            if (!_didIteratorError2) {
+                            if (!_didIteratorError) {
                                 context$3$0.next = 24;
                                 break;
                             }
 
-                            throw _iteratorError2;
+                            throw _iteratorError;
 
                         case 24:
                             return context$3$0.finish(21);
@@ -140,24 +109,24 @@ var Sequence = (function () {
         key: 'filter',
         value: function filter(fn) {
             var filterGen = regeneratorRuntime.mark(function filterGen(fn, iterable) {
-                var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, val;
+                var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, val;
 
                 return regeneratorRuntime.wrap(function filterGen$(context$3$0) {
                     while (1) switch (context$3$0.prev = context$3$0.next) {
                         case 0:
-                            _iteratorNormalCompletion3 = true;
-                            _didIteratorError3 = false;
-                            _iteratorError3 = undefined;
+                            _iteratorNormalCompletion2 = true;
+                            _didIteratorError2 = false;
+                            _iteratorError2 = undefined;
                             context$3$0.prev = 3;
-                            _iterator3 = iterable[Symbol.iterator]();
+                            _iterator2 = iterable[Symbol.iterator]();
 
                         case 5:
-                            if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
+                            if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
                                 context$3$0.next = 13;
                                 break;
                             }
 
-                            val = _step3.value;
+                            val = _step2.value;
 
                             if (!fn(val)) {
                                 context$3$0.next = 10;
@@ -168,7 +137,7 @@ var Sequence = (function () {
                             return val;
 
                         case 10:
-                            _iteratorNormalCompletion3 = true;
+                            _iteratorNormalCompletion2 = true;
                             context$3$0.next = 5;
                             break;
 
@@ -179,26 +148,26 @@ var Sequence = (function () {
                         case 15:
                             context$3$0.prev = 15;
                             context$3$0.t0 = context$3$0['catch'](3);
-                            _didIteratorError3 = true;
-                            _iteratorError3 = context$3$0.t0;
+                            _didIteratorError2 = true;
+                            _iteratorError2 = context$3$0.t0;
 
                         case 19:
                             context$3$0.prev = 19;
                             context$3$0.prev = 20;
 
-                            if (!_iteratorNormalCompletion3 && _iterator3['return']) {
-                                _iterator3['return']();
+                            if (!_iteratorNormalCompletion2 && _iterator2['return']) {
+                                _iterator2['return']();
                             }
 
                         case 22:
                             context$3$0.prev = 22;
 
-                            if (!_didIteratorError3) {
+                            if (!_didIteratorError2) {
                                 context$3$0.next = 25;
                                 break;
                             }
 
-                            throw _iteratorError3;
+                            throw _iteratorError2;
 
                         case 25:
                             return context$3$0.finish(22);
@@ -214,6 +183,68 @@ var Sequence = (function () {
             });
 
             return new Sequence(filterGen, [fn], this);
+        }
+    }, {
+        key: 'toArray',
+        value: function toArray() {
+            var result = [];
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+                for (var _iterator3 = this[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                    var val = _step3.value;
+
+                    result.push(val);
+                }
+            } catch (err) {
+                _didIteratorError3 = true;
+                _iteratorError3 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion3 && _iterator3['return']) {
+                        _iterator3['return']();
+                    }
+                } finally {
+                    if (_didIteratorError3) {
+                        throw _iteratorError3;
+                    }
+                }
+            }
+
+            return result;
+        }
+    }, {
+        key: 'reduce',
+        value: function reduce(fn, acc) {
+            var i = 0;
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+                for (var _iterator4 = this[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                    var val = _step4.value;
+
+                    if (! i++ && typeof acc === 'undefined') acc = val;else acc = fn(acc, val);
+                }
+            } catch (err) {
+                _didIteratorError4 = true;
+                _iteratorError4 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion4 && _iterator4['return']) {
+                        _iterator4['return']();
+                    }
+                } finally {
+                    if (_didIteratorError4) {
+                        throw _iteratorError4;
+                    }
+                }
+            }
+
+            return acc;
         }
     }]);
 

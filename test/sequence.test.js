@@ -66,7 +66,18 @@ describe('class Sequence', function () {
             })).filter((x) => x % 2);
             expect(filterSeq.toArray()).to.eql([1,3]);
         });
+    });
 
+    describe('.reduce', function () {
+        it('reduces from first element', function () {
+            let seq = zeroSeq().take(5);
+            expect(seq.reduce((acc, next) => "" + acc + next)).to.equal('00000');
+        });
+
+        it('reduces from optional initial value', function () {
+           let seq = zeroSeq().take(5);
+           expect(seq.reduce((acc, next) => "" + acc + next, 'foo')).to.equal('foo00000'); 
+        });
     });
 
     describe('lazy application', function () {

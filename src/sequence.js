@@ -15,14 +15,6 @@ class Sequence {
         return new Sequence(takeGen, [n], this);
     }
 
-    toArray() {
-        let result = [];
-        for (let val of this)  {
-                result.push(val);
-            }
-        return result;
-    }
-
     map(fn) {
         let mapGen = function* (fn, iterable) {
             for (let val of iterable) yield fn(val);
@@ -38,6 +30,24 @@ class Sequence {
         };
 
         return new Sequence(filterGen, [fn], this);
+    }
+
+    toArray() {
+        let result = [];
+        for (let val of this)  {
+                result.push(val);
+            }
+        return result;
+    }
+
+    reduce(fn, acc) {
+        let i = 0;
+        for (let val of this) {
+            if (!i++ && typeof acc === 'undefined') acc = val;
+            else acc = fn(acc, val);
+        }
+
+        return acc;
     }
 }
 
