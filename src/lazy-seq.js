@@ -20,6 +20,16 @@ class LazySeq {
         return new LazySeq(takeGen, [n], this);
     }
 
+    drop(n) {
+        let dropGen = function *(n, iterable) {
+            let x = 0;
+            for (let val of iterable) {
+                if (n <= x++) yield val; 
+            }
+        }
+        return new LazySeq(dropGen, [n], this);
+    }
+
     map(fn) {
         let mapGen = function* (fn, iterable) {
             for (let val of iterable) yield fn(val);

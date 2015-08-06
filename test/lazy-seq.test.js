@@ -1,4 +1,5 @@
 import LazySeq from '../dist/lazy-seq';
+import intSeq from '../dist/int-seq';
 
 function force (seq) {
     let result = [];
@@ -59,6 +60,14 @@ describe('class LazySeq', function () {
                 yield 3;
             })).filter((x) => x % 2);
             expect(filterSeq.toArray()).to.eql([1,3]);
+        });
+    });
+
+    describe('.drop', function () {
+        it('ignores the first n values in a seq', function () {
+            let dropSeq = intSeq().drop(5),
+                [a, b, c] = dropSeq;
+            expect([a, b, c]).to.eql([5,6,7]);
         });
     });
 
