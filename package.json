@@ -11,5 +11,16 @@
     "es6"
   ],
   "author": "tragiclifestories",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.0",
+    "gulp-mocha": "^2.1.3",
+    "gulp-sourcemaps": "^1.5.2"
+  },
+  "dependencies": {
+    "babel": "^5.8.21"
+  }
 }

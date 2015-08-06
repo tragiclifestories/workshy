@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":[],"mappings":";;;;;AAAA,OAAO,CAAC,gBAAgB,CAAC,CAAC;qBACX,CAAC","file":"index.js","sourcesContent":["require('babel/polyfill');\nexport default 5;"],"sourceRoot":"/source/"}

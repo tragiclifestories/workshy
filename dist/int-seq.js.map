@@ -1,0 +1,1 @@
+{"version":3,"sources":["int-seq.js"],"names":[],"mappings":";;;;;iBAAU,MAAM;AAAhB,SAAU,MAAM;;;;;uBACN,CAAC;;;;uBACD,CAAC;;;;uBACD,CAAC;;;;;;;CACV;;qBAEc,MAAM","file":"int-seq.js","sourcesContent":["function *intSeq() {\n    yield 0;\n    yield 1;\n    yield 2;\n}\n\nexport default intSeq;"],"sourceRoot":"/source/"}
