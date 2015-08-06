@@ -67,7 +67,7 @@ var Sequence = (function () {
     }, {
         key: 'map',
         value: function map(fn) {
-            var mapGen = regeneratorRuntime.mark(function mapGen(fn, parent) {
+            var mapGen = regeneratorRuntime.mark(function mapGen(fn, iterable) {
                 var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, val;
 
                 return regeneratorRuntime.wrap(function mapGen$(context$3$0) {
@@ -77,7 +77,7 @@ var Sequence = (function () {
                             _didIteratorError2 = false;
                             _iteratorError2 = undefined;
                             context$3$0.prev = 3;
-                            _iterator2 = parent[Symbol.iterator]();
+                            _iterator2 = iterable[Symbol.iterator]();
 
                         case 5:
                             if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
@@ -139,7 +139,7 @@ var Sequence = (function () {
     }, {
         key: 'filter',
         value: function filter(fn) {
-            var filterGen = regeneratorRuntime.mark(function filterGen(fn, parent) {
+            var filterGen = regeneratorRuntime.mark(function filterGen(fn, iterable) {
                 var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, val;
 
                 return regeneratorRuntime.wrap(function filterGen$(context$3$0) {
@@ -149,7 +149,7 @@ var Sequence = (function () {
                             _didIteratorError3 = false;
                             _iteratorError3 = undefined;
                             context$3$0.prev = 3;
-                            _iterator3 = parent[Symbol.iterator]();
+                            _iterator3 = iterable[Symbol.iterator]();
 
                         case 5:
                             if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {

@@ -24,15 +24,15 @@ class Sequence {
     }
 
     map(fn) {
-        let mapGen = function* (fn, parent) {
-            for (let val of parent) yield fn(val);
+        let mapGen = function* (fn, iterable) {
+            for (let val of iterable) yield fn(val);
         };
         return new Sequence(mapGen, [fn], this);
     }
 
     filter(fn) {
-        let filterGen = function* (fn, parent) {
-            for (let val of parent) {
+        let filterGen = function* (fn, iterable) {
+            for (let val of iterable) {
                 if (fn(val)) yield val; 
             }
         };

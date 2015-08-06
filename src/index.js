@@ -1,3 +1,4 @@
 require('babel/polyfill');
+import intSeq from './int-seq';
 
-export default 5;
+export default { intSeq };
