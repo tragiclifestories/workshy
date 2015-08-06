@@ -1,16 +1,21 @@
 import takeGen from './take';
 
 class Sequence {
-    constructor(gen) {
+    constructor(gen, args, parent) {
         this._generator = gen;
+        this._args = args;
+        if (parent) this._args.push(parent);
     }
     [Symbol.iterator]() {
-        return this._generator;
+        return this._generator.apply(this, this._args);
     }
     take(n) {
-        let newGen = takeGen(n, this._generator);
-
-        return new Sequence(newGen);
+        return new Sequence(takeGen, [n], this);
+    }
+    toArray() {
+        let result = [];
+        for (let val of this) result.push(val);
+        return result;
     }
 }
 

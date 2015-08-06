@@ -15,23 +15,53 @@ var _take = require('./take');
 var _take2 = _interopRequireDefault(_take);
 
 var Sequence = (function () {
-    function Sequence(gen) {
+    function Sequence(gen, args, parent) {
         _classCallCheck(this, Sequence);
 
         this._generator = gen;
+        this._args = args;
+        if (parent) this._args.push(parent);
     }
 
     _createClass(Sequence, [{
         key: Symbol.iterator,
         value: function value() {
-            return this._generator;
+            return this._generator.apply(this, this._args);
         }
     }, {
         key: 'take',
         value: function take(n) {
-            var newGen = (0, _take2['default'])(n, this._generator);
+            return new Sequence(_take2['default'], [n], this);
+        }
+    }, {
+        key: 'toArray',
+        value: function toArray() {
+            var result = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
 
-            return new Sequence(newGen);
+            try {
+                for (var _iterator = this[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var val = _step.value;
+                    result.push(val);
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator['return']) {
+                        _iterator['return']();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return result;
         }
     }]);
 

@@ -1,12 +1,12 @@
 import Sequence from './sequence';
 
-function intSeq() { 
-    return new Sequence(intGen());
+function intSeq(n) { 
+    return new Sequence(intGen, [n]);
     
 }
 
-function *intGen() {
-    let x = 0;
+function *intGen(n) {
+    let x = n || 0;
     while (true) yield x++; //eslint-disable-line no-constant-condition
 }
 

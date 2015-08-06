@@ -12,16 +12,16 @@ var _sequence = require('./sequence');
 
 var _sequence2 = _interopRequireDefault(_sequence);
 
-function intSeq() {
-    return new _sequence2['default'](intGen());
+function intSeq(n) {
+    return new _sequence2['default'](intGen, [n]);
 }
 
-function intGen() {
+function intGen(n) {
     var x;
     return regeneratorRuntime.wrap(function intGen$(context$1$0) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
-                x = 0;
+                x = n || 0;
 
             case 1:
                 if (!true) {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports["default"] = regeneratorRuntime.mark(function callee$0$0(n, gen) {
+exports["default"] = regeneratorRuntime.mark(function callee$0$0(n, parent) {
     var x, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, val;
 
     return regeneratorRuntime.wrap(function callee$0$0$(context$1$0) {
@@ -23,7 +23,7 @@ exports["default"] = regeneratorRuntime.mark(function callee$0$0(n, gen) {
                 _didIteratorError = false;
                 _iteratorError = undefined;
                 context$1$0.prev = 6;
-                _iterator = gen[Symbol.iterator]();
+                _iterator = parent[Symbol.iterator]();
 
             case 8:
                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
