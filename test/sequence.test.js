@@ -45,8 +45,32 @@ describe('class Sequence', function () {
         });
     });
 
+    describe('.map', function () {
+        it('lazily maps over a sequence', function () {
+            let mapSeq = (new Sequence(function* () {
+                yield 1;
+                yield 2;
+                yield 3;
+            })).map((x) => x * x);
+
+            expect(mapSeq.toArray()).to.eql([1,4,9]);     
+        });
+    });
+
+    describe('.filter', function () {
+        it('should filter according to predicate function', function () {
+            let filterSeq = (new Sequence(function* () {
+                yield 1;
+                yield 2;
+                yield 3;
+            })).filter((x) => x % 2);
+            expect(filterSeq.toArray()).to.eql([1,3]);
+        });
+
+    });
+
     describe('lazy application', function () {
-        it('one sequence cannot be exhausted by a sibling', function () {
+        it('cannot be exhausted by a sibling', function () {
             let base = new Sequence(function* () {
                 yield 0;
             });
@@ -55,10 +79,19 @@ describe('class Sequence', function () {
 
             expect(seq1.toArray()).to.eql(seq2.toArray()); 
         });
-        
+    });
+
+    describe('composition', function () {
         it('can be deeply nested', function () {
             let sequence = zeroSeq().take(5).take(3);
             expect(sequence.toArray()).to.eql([0,0,0]);
+        });
+
+        it('composes sequence methods transitively', function () {
+            let seq1 = zeroSeq().take(5).map((x) => x + 1);
+            let seq2 = zeroSeq().map((x) => x + 1).take(5);
+            expect(seq1.toArray()).to.eql([1,1,1,1,1]);
+            expect(seq1.toArray()).to.eql(seq2.toArray());
         });
     });
 });
