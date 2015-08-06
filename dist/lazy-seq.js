@@ -271,30 +271,205 @@ var LazySeq = (function () {
             return new LazySeq(filterGen, [fn], this);
         }
     }, {
+        key: 'dropWhile',
+        value: function dropWhile(fn) {
+            var dropWhileGen = regeneratorRuntime.mark(function dropWhileGen(fn, iterable) {
+                var isBlocked, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, val;
+
+                return regeneratorRuntime.wrap(function dropWhileGen$(context$3$0) {
+                    while (1) switch (context$3$0.prev = context$3$0.next) {
+                        case 0:
+                            isBlocked = true;
+                            _iteratorNormalCompletion4 = true;
+                            _didIteratorError4 = false;
+                            _iteratorError4 = undefined;
+                            context$3$0.prev = 4;
+                            _iterator4 = iterable[Symbol.iterator]();
+
+                        case 6:
+                            if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+                                context$3$0.next = 15;
+                                break;
+                            }
+
+                            val = _step4.value;
+
+                            if (isBlocked) isBlocked = fn(val);
+
+                            if (isBlocked) {
+                                context$3$0.next = 12;
+                                break;
+                            }
+
+                            context$3$0.next = 12;
+                            return val;
+
+                        case 12:
+                            _iteratorNormalCompletion4 = true;
+                            context$3$0.next = 6;
+                            break;
+
+                        case 15:
+                            context$3$0.next = 21;
+                            break;
+
+                        case 17:
+                            context$3$0.prev = 17;
+                            context$3$0.t0 = context$3$0['catch'](4);
+                            _didIteratorError4 = true;
+                            _iteratorError4 = context$3$0.t0;
+
+                        case 21:
+                            context$3$0.prev = 21;
+                            context$3$0.prev = 22;
+
+                            if (!_iteratorNormalCompletion4 && _iterator4['return']) {
+                                _iterator4['return']();
+                            }
+
+                        case 24:
+                            context$3$0.prev = 24;
+
+                            if (!_didIteratorError4) {
+                                context$3$0.next = 27;
+                                break;
+                            }
+
+                            throw _iteratorError4;
+
+                        case 27:
+                            return context$3$0.finish(24);
+
+                        case 28:
+                            return context$3$0.finish(21);
+
+                        case 29:
+                        case 'end':
+                            return context$3$0.stop();
+                    }
+                }, dropWhileGen, this, [[4, 17, 21, 29], [22,, 24, 28]]);
+            });
+            return new LazySeq(dropWhileGen, [fn], this);
+        }
+    }, {
+        key: 'takeWhile',
+        value: function takeWhile(fn) {
+            var takeWhileGen = regeneratorRuntime.mark(function takeWhileGen(fn, iterable) {
+                var isOpen, _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, val;
+
+                return regeneratorRuntime.wrap(function takeWhileGen$(context$3$0) {
+                    while (1) switch (context$3$0.prev = context$3$0.next) {
+                        case 0:
+                            isOpen = true;
+                            _iteratorNormalCompletion5 = true;
+                            _didIteratorError5 = false;
+                            _iteratorError5 = undefined;
+                            context$3$0.prev = 4;
+                            _iterator5 = iterable[Symbol.iterator]();
+
+                        case 6:
+                            if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+                                context$3$0.next = 19;
+                                break;
+                            }
+
+                            val = _step5.value;
+
+                            if (!isOpen) {
+                                context$3$0.next = 15;
+                                break;
+                            }
+
+                            context$3$0.t0 = isOpen = fn(val);
+
+                            if (!context$3$0.t0) {
+                                context$3$0.next = 13;
+                                break;
+                            }
+
+                            context$3$0.next = 13;
+                            return val;
+
+                        case 13:
+                            context$3$0.next = 16;
+                            break;
+
+                        case 15:
+                            return context$3$0.abrupt('break', 19);
+
+                        case 16:
+                            _iteratorNormalCompletion5 = true;
+                            context$3$0.next = 6;
+                            break;
+
+                        case 19:
+                            context$3$0.next = 25;
+                            break;
+
+                        case 21:
+                            context$3$0.prev = 21;
+                            context$3$0.t1 = context$3$0['catch'](4);
+                            _didIteratorError5 = true;
+                            _iteratorError5 = context$3$0.t1;
+
+                        case 25:
+                            context$3$0.prev = 25;
+                            context$3$0.prev = 26;
+
+                            if (!_iteratorNormalCompletion5 && _iterator5['return']) {
+                                _iterator5['return']();
+                            }
+
+                        case 28:
+                            context$3$0.prev = 28;
+
+                            if (!_didIteratorError5) {
+                                context$3$0.next = 31;
+                                break;
+                            }
+
+                            throw _iteratorError5;
+
+                        case 31:
+                            return context$3$0.finish(28);
+
+                        case 32:
+                            return context$3$0.finish(25);
+
+                        case 33:
+                        case 'end':
+                            return context$3$0.stop();
+                    }
+                }, takeWhileGen, this, [[4, 21, 25, 33], [26,, 28, 32]]);
+            });
+
+            return new LazySeq(takeWhileGen, [fn], this);
+        }
+    }, {
         key: 'toArray',
         value: function toArray() {
             var result = [];
-            var _iteratorNormalCompletion4 = true;
-            var _didIteratorError4 = false;
-            var _iteratorError4 = undefined;
+            var _iteratorNormalCompletion6 = true;
+            var _didIteratorError6 = false;
+            var _iteratorError6 = undefined;
 
             try {
-                for (var _iterator4 = this[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                    var val = _step4.value;
+                for (var _iterator6 = this[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+                    var val = _step6.value;
 
                     result.push(val);
                 }
             } catch (err) {
-                _didIteratorError4 = true;
-                _iteratorError4 = err;
+                _didIteratorError6 = true;
+                _iteratorError6 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion4 && _iterator4['return']) {
-                        _iterator4['return']();
+                    if (!_iteratorNormalCompletion6 && _iterator6['return']) {
+                        _iterator6['return']();
                     }
                 } finally {
-                    if (_didIteratorError4) {
-                        throw _iteratorError4;
+                    if (_didIteratorError6) {
+                        throw _iteratorError6;
                     }
                 }
             }
@@ -305,27 +480,27 @@ var LazySeq = (function () {
         key: 'reduce',
         value: function reduce(fn, acc) {
             var i = 0;
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
+            var _iteratorNormalCompletion7 = true;
+            var _didIteratorError7 = false;
+            var _iteratorError7 = undefined;
 
             try {
-                for (var _iterator5 = this[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                    var val = _step5.value;
+                for (var _iterator7 = this[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+                    var val = _step7.value;
 
                     if (! i++ && typeof acc === 'undefined') acc = val;else acc = fn(acc, val);
                 }
             } catch (err) {
-                _didIteratorError5 = true;
-                _iteratorError5 = err;
+                _didIteratorError7 = true;
+                _iteratorError7 = err;
             } finally {
                 try {
-                    if (!_iteratorNormalCompletion5 && _iterator5['return']) {
-                        _iterator5['return']();
+                    if (!_iteratorNormalCompletion7 && _iterator7['return']) {
+                        _iterator7['return']();
                     }
                 } finally {
-                    if (_didIteratorError5) {
-                        throw _iteratorError5;
+                    if (_didIteratorError7) {
+                        throw _iteratorError7;
                     }
                 }
             }

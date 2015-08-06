@@ -39,6 +39,13 @@ describe('class LazySeq', function () {
         });
     });
 
+    describe('.drop', function () {
+        it('ignores the first n values in a seq', function () {
+            let dropSeq = intSeq().drop(5),
+                [a, b, c] = dropSeq;
+            expect([a, b, c]).to.eql([5,6,7]);
+        });
+    });
 
     describe('.map', function () {
         it('lazily maps over a sequence', function () {
@@ -63,11 +70,19 @@ describe('class LazySeq', function () {
         });
     });
 
-    describe('.drop', function () {
-        it('ignores the first n values in a seq', function () {
-            let dropSeq = intSeq().drop(5),
-                [a, b, c] = dropSeq;
-            expect([a, b, c]).to.eql([5,6,7]);
+    describe('.dropWhile', function () {
+        it('ignores values until predicate is false', function () {
+            let dwSeq = intSeq(1).dropWhile((x) => x % 12 !== 0),
+                [a, b, c] = dwSeq;
+            expect([a, b, c]).to.eql([12, 13, 14]);     
+        });
+    });
+
+    describe('takeWhile', function () {
+        it('takes values until predicate is false', function () {
+            let twSeq = intSeq(4).takeWhile((x) => (x * x) % 6 !== 0),
+            [a, b, c] = twSeq;
+        expect([a, b, c]).to.eql([4, 5, undefined]);
         });
     });
 

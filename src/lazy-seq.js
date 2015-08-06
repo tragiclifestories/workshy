@@ -47,6 +47,29 @@ class LazySeq {
         return new LazySeq(filterGen, [fn], this);
     }
 
+    dropWhile(fn) {
+        let dropWhileGen = function* (fn, iterable) {
+            let isBlocked = true;
+            for (let val of iterable) {
+                if (isBlocked) isBlocked = fn(val);
+                if (!isBlocked) yield val;
+            }
+        }
+        return new LazySeq(dropWhileGen, [fn], this);
+    }
+
+    takeWhile(fn) {
+        let takeWhileGen = function* (fn, iterable) {
+            let isOpen = true;
+            for (let val of iterable) {
+                if (isOpen) (isOpen = fn(val)) && (yield val);
+                else break;
+            }
+        }
+
+        return new LazySeq(takeWhileGen, [fn], this);
+    }
+
     toArray() {
         let result = [];
         for (let val of this)  {
