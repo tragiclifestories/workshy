@@ -14,24 +14,31 @@ var _take = require('./take');
 
 var _take2 = _interopRequireDefault(_take);
 
-var Sequence = (function () {
-    function Sequence(gen, args, parent) {
-        _classCallCheck(this, Sequence);
+var LazySeq = (function () {
+    function LazySeq(gen, args, parent) {
+        _classCallCheck(this, LazySeq);
 
         this._generator = gen;
         this._args = args;
         if (parent) this._args.push(parent);
     }
 
-    _createClass(Sequence, [{
+    _createClass(LazySeq, [{
         key: Symbol.iterator,
         value: function value() {
             return this._generator.apply(this, this._args);
         }
+
+        /**
+         * Returns a lazy sequence of the first n
+         * values of the callee.
+         * @param  {integer}
+         * @return {LazySeq}
+         */
     }, {
         key: 'take',
         value: function take(n) {
-            return new Sequence(_take2['default'], [n], this);
+            return new LazySeq(_take2['default'], [n], this);
         }
     }, {
         key: 'map',
@@ -103,7 +110,7 @@ var Sequence = (function () {
                     }
                 }, mapGen, this, [[3, 14, 18, 26], [19,, 21, 25]]);
             });
-            return new Sequence(mapGen, [fn], this);
+            return new LazySeq(mapGen, [fn], this);
         }
     }, {
         key: 'filter',
@@ -182,7 +189,7 @@ var Sequence = (function () {
                 }, filterGen, this, [[3, 15, 19, 27], [20,, 22, 26]]);
             });
 
-            return new Sequence(filterGen, [fn], this);
+            return new LazySeq(filterGen, [fn], this);
         }
     }, {
         key: 'toArray',
@@ -248,9 +255,9 @@ var Sequence = (function () {
         }
     }]);
 
-    return Sequence;
+    return LazySeq;
 })();
 
-exports['default'] = Sequence;
+exports['default'] = LazySeq;
 module.exports = exports['default'];
-//# sourceMappingURL=sequence.js.map
+//# sourceMappingURL=lazy-seq.js.map

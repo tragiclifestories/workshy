@@ -1,7 +1,7 @@
-import Sequence from './sequence';
+import LazySeq from './lazy-seq';
 
 function intSeq(n) { 
-    return new Sequence(intGen, [n]);
+    return new LazySeq(intGen, [n]);
     
 }
 

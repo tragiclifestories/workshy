@@ -8,12 +8,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'd
 
 var marked0$0 = [intGen].map(regeneratorRuntime.mark);
 
-var _sequence = require('./sequence');
+var _lazySeq = require('./lazy-seq');
 
-var _sequence2 = _interopRequireDefault(_sequence);
+var _lazySeq2 = _interopRequireDefault(_lazySeq);
 
 function intSeq(n) {
-    return new _sequence2['default'](intGen, [n]);
+    return new _lazySeq2['default'](intGen, [n]);
 }
 
 function intGen(n) {

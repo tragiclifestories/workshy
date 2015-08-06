@@ -1,6 +1,6 @@
 import takeGen from './take';
 
-class Sequence {
+class LazySeq {
     constructor(gen, args, parent) {
         this._generator = gen;
         this._args = args;
@@ -10,16 +10,21 @@ class Sequence {
     [Symbol.iterator]() {
         return this._generator.apply(this, this._args);
     }
-
+    /**
+     * Returns a lazy sequence of the first n
+     * values of the callee.
+     * @param  {integer}
+     * @return {LazySeq}
+     */
     take(n) {
-        return new Sequence(takeGen, [n], this);
+        return new LazySeq(takeGen, [n], this);
     }
 
     map(fn) {
         let mapGen = function* (fn, iterable) {
             for (let val of iterable) yield fn(val);
         };
-        return new Sequence(mapGen, [fn], this);
+        return new LazySeq(mapGen, [fn], this);
     }
 
     filter(fn) {
@@ -29,7 +34,7 @@ class Sequence {
             }
         };
 
-        return new Sequence(filterGen, [fn], this);
+        return new LazySeq(filterGen, [fn], this);
     }
 
     toArray() {
@@ -51,4 +56,4 @@ class Sequence {
     }
 }
 
-export default Sequence;
+export default LazySeq;

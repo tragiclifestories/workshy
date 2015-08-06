@@ -1,4 +1,4 @@
-import Sequence from '../dist/sequence';
+import LazySeq from '../dist/lazy-seq';
 
 function force (seq) {
     let result = [];
@@ -7,12 +7,12 @@ function force (seq) {
 }
 
 function zeroSeq () {
-    return new Sequence(function* () {
+    return new LazySeq(function* () {
         while (true) yield 0; //eslint-disable-line no-constant-condition
     })
 }
 
-describe('class Sequence', function () {
+describe('class LazySeq', function () {
     describe('.take', function () {
         var sequence;
         beforeEach(function () {
@@ -29,7 +29,7 @@ describe('class Sequence', function () {
         });
 
         it('takes only while underlying seq yields values', function () {
-            sequence = new Sequence(function* () {
+            sequence = new LazySeq(function* () {
                 yield 0;
             });
 
@@ -38,16 +38,10 @@ describe('class Sequence', function () {
         });
     });
 
-    describe('.toArray', function () {
-        it('force evaluates the sequence to an array', function () {
-            let sequence = zeroSeq().take(5);
-            expect(sequence.toArray()).to.eql([0,0,0,0,0]);
-        });
-    });
 
     describe('.map', function () {
         it('lazily maps over a sequence', function () {
-            let mapSeq = (new Sequence(function* () {
+            let mapSeq = (new LazySeq(function* () {
                 yield 1;
                 yield 2;
                 yield 3;
@@ -59,7 +53,7 @@ describe('class Sequence', function () {
 
     describe('.filter', function () {
         it('should filter according to predicate function', function () {
-            let filterSeq = (new Sequence(function* () {
+            let filterSeq = (new LazySeq(function* () {
                 yield 1;
                 yield 2;
                 yield 3;
@@ -68,21 +62,30 @@ describe('class Sequence', function () {
         });
     });
 
-    describe('.reduce', function () {
-        it('reduces from first element', function () {
-            let seq = zeroSeq().take(5);
-            expect(seq.reduce((acc, next) => "" + acc + next)).to.equal('00000');
+    describe('reductions', function () {
+        describe('.reduce', function () {
+            it('reduces from first element', function () {
+                let seq = zeroSeq().take(5);
+                expect(seq.reduce((acc, next) => "" + acc + next)).to.equal('00000');
+            });
+
+            it('reduces from optional initial value', function () {
+               let seq = zeroSeq().take(5);
+               expect(seq.reduce((acc, next) => "" + acc + next, 'foo')).to.equal('foo00000'); 
+            });
         });
 
-        it('reduces from optional initial value', function () {
-           let seq = zeroSeq().take(5);
-           expect(seq.reduce((acc, next) => "" + acc + next, 'foo')).to.equal('foo00000'); 
+        describe('.toArray', function () {
+            it('force evaluates the sequence to an array', function () {
+                let sequence = zeroSeq().take(5);
+                expect(sequence.toArray()).to.eql([0,0,0,0,0]);
+            });
         });
     });
 
     describe('lazy application', function () {
         it('cannot be exhausted by a sibling', function () {
-            let base = new Sequence(function* () {
+            let base = new LazySeq(function* () {
                 yield 0;
             });
             let seq1 = base.take(1); 
