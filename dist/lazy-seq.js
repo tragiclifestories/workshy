@@ -457,7 +457,14 @@ var LazySeq = (function () {
     }, {
         key: 'toArray',
         value: function toArray() {
-            var result = [];
+            return this.reduce(function (acc, item) {
+                return acc.concat([item]);
+            }, []);
+        }
+    }, {
+        key: 'reduce',
+        value: function reduce(fn, acc) {
+            var i = 0;
             var _iteratorNormalCompletion6 = true;
             var _didIteratorError6 = false;
             var _iteratorError6 = undefined;
@@ -466,7 +473,7 @@ var LazySeq = (function () {
                 for (var _iterator6 = this[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
                     var val = _step6.value;
 
-                    result.push(val);
+                    if (! i++ && typeof acc === 'undefined') acc = val;else acc = fn(acc, val);
                 }
             } catch (err) {
                 _didIteratorError6 = true;
@@ -479,37 +486,6 @@ var LazySeq = (function () {
                 } finally {
                     if (_didIteratorError6) {
                         throw _iteratorError6;
-                    }
-                }
-            }
-
-            return result;
-        }
-    }, {
-        key: 'reduce',
-        value: function reduce(fn, acc) {
-            var i = 0;
-            var _iteratorNormalCompletion7 = true;
-            var _didIteratorError7 = false;
-            var _iteratorError7 = undefined;
-
-            try {
-                for (var _iterator7 = this[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                    var val = _step7.value;
-
-                    if (! i++ && typeof acc === 'undefined') acc = val;else acc = fn(acc, val);
-                }
-            } catch (err) {
-                _didIteratorError7 = true;
-                _iteratorError7 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion7 && _iterator7['return']) {
-                        _iterator7['return']();
-                    }
-                } finally {
-                    if (_didIteratorError7) {
-                        throw _iteratorError7;
                     }
                 }
             }

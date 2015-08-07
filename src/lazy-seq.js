@@ -76,11 +76,7 @@ class LazySeq {
     }
 
     toArray() {
-        let result = [];
-        for (let val of this)  {
-                result.push(val);
-            }
-        return result;
+        return this.reduce((acc, item) => acc.concat([item]), []);
     }
 
     reduce(fn, acc) {
