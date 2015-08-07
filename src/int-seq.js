@@ -1,12 +1,13 @@
 import LazySeq from './lazy-seq';
 
-function intSeq(n) { 
-    return new LazySeq(intGen, [n]);
-    
+function intSeq(start, end) {
+    let seq = new LazySeq(intGen, [start]);
+    if (typeof end === 'undefined') return seq;
+    return seq.takeWhile((x) => x < end);
 }
 
-function *intGen(n) {
-    let x = n || 0;
+function *intGen(start) {
+    let x = start || 0;
     while (true) yield x++; //eslint-disable-line no-constant-condition
 }
 

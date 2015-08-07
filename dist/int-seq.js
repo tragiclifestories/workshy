@@ -12,16 +12,20 @@ var _lazySeq = require('./lazy-seq');
 
 var _lazySeq2 = _interopRequireDefault(_lazySeq);
 
-function intSeq(n) {
-    return new _lazySeq2['default'](intGen, [n]);
+function intSeq(start, end) {
+    var seq = new _lazySeq2['default'](intGen, [start]);
+    if (typeof end === 'undefined') return seq;
+    return seq.takeWhile(function (x) {
+        return x < end;
+    });
 }
 
-function intGen(n) {
+function intGen(start) {
     var x;
     return regeneratorRuntime.wrap(function intGen$(context$1$0) {
         while (1) switch (context$1$0.prev = context$1$0.next) {
             case 0:
-                x = n || 0;
+                x = start || 0;
 
             case 1:
                 if (!true) {
