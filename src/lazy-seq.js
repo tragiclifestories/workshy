@@ -1,4 +1,4 @@
-import takeGen from './take';
+import generators from './generators';
 
 class LazySeq {
     constructor(gen, args, parent) {
@@ -12,57 +12,27 @@ class LazySeq {
     }
 
     take(n) {
-        return new LazySeq(takeGen, [n], this);
+        return new LazySeq(generators.take, [n], this);
     }
 
     drop(n) {
-        let dropGen = function *(n, iterable) {
-            let x = 0;
-            for (let val of iterable) {
-                if (n <= x++) yield val; 
-            }
-        }
-        return new LazySeq(dropGen, [n], this);
+        return new LazySeq(generators.drop, [n], this);
     }
 
     map(fn) {
-        let mapGen = function* (fn, iterable) {
-            for (let val of iterable) yield fn(val);
-        };
-        return new LazySeq(mapGen, [fn], this);
+        return new LazySeq(generators.map, [fn], this);
     }
 
     filter(fn) {
-        let filterGen = function* (fn, iterable) {
-            for (let val of iterable) {
-                if (fn(val)) yield val; 
-            }
-        };
-
-        return new LazySeq(filterGen, [fn], this);
+        return new LazySeq(generators.filter, [fn], this);
     }
 
     dropWhile(fn) {
-        let dropWhileGen = function* (fn, iterable) {
-            let isBlocked = true;
-            for (let val of iterable) {
-                if (isBlocked) isBlocked = fn(val);
-                if (!isBlocked) yield val;
-            }
-        }
-        return new LazySeq(dropWhileGen, [fn], this);
+        return new LazySeq(generators.dropWhile, [fn], this);
     }
 
     takeWhile(fn) {
-        let takeWhileGen = function* (fn, iterable) {
-            let isOpen = true;
-            for (let val of iterable) {
-                if (isOpen) (isOpen = fn(val)) && (yield val);
-                else break;
-            }
-        }
-
-        return new LazySeq(takeWhileGen, [fn], this);
+        return new LazySeq(generators.takeWhile, [fn], this);
     }
 
     takeUntil(fn) {
@@ -71,7 +41,7 @@ class LazySeq {
     }
 
     dropUntil(fn) {
-         let inverted = (x) => !(fn(x));
+        let inverted = (x) => !(fn(x));
         return this.dropWhile(inverted);   
     }
 
