@@ -102,6 +102,37 @@ describe('class LazySeq', function () {
         });
     });
 
+    describe('.chunk', function () {
+        it('yields n-length arrays from parent', function () {
+            let chunkSeq = intSeq(1).chunk(5),
+                [a] = chunkSeq;
+
+            expect(a).to.eql([1,2,3,4,5]);
+        });
+
+        it('yields remainder if n > remaining values', function () {
+            let chunkSeq = intSeq(1).take(3).chunk(5),
+                [a] = chunkSeq;
+
+            expect(a).to.eql([1,2,3]);
+        });
+
+        it('defaults n to 1', function () {
+            let chunkSeq = intSeq(1).chunk(),
+                [a] = chunkSeq;            
+            expect(a).to.eql([1]);
+        });
+    });
+
+    describe('.compact', function () {
+        it('yields only truthy values', function () {
+            let compactSeq = intSeq().compact(),
+                [a] = compactSeq;
+
+            expect(a).to.equal(1);
+        });
+    });
+
     describe('reductions', function () {
         describe('.reduce', function () {
             it('reduces from first element', function () {

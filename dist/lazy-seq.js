@@ -29,6 +29,18 @@ var LazySeq = (function () {
             return this._generator.apply(this, this._args);
         }
     }, {
+        key: 'chunk',
+        value: function chunk(n) {
+            return new LazySeq(_generators2['default'].chunk, [n], this);
+        }
+    }, {
+        key: 'compact',
+        value: function compact() {
+            return this.filter(function (x) {
+                return x;
+            });
+        }
+    }, {
         key: 'take',
         value: function take(n) {
             return new LazySeq(_generators2['default'].take, [n], this);

@@ -1,8 +1,21 @@
 export default {
-    take: function* (n, parent) {
+    chunk: function* (n, iterable) {
+        if (!n || n < 1) n = 1;
+        let currentChunk = [];
+        for (let val of iterable) {
+            if (currentChunk.length < n) currentChunk.push(val);
+            else {
+                yield currentChunk;
+                currentChunk = [];
+            }
+        }
+        yield currentChunk;
+    },
+
+    take: function* (n, iterable) {
         let x = 0;
         if (n === 0) return;
-        for (let val of parent) {
+        for (let val of iterable) {
             yield val;
             if (n <= ++x) break;
         }

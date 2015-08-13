@@ -11,6 +11,14 @@ class LazySeq {
         return this._generator.apply(this, this._args);
     }
 
+    chunk(n) {
+        return new LazySeq(generators.chunk, [n], this);
+    }
+
+    compact() {
+        return this.filter((x) => x);
+    }
+
     take(n) {
         return new LazySeq(generators.take, [n], this);
     }
