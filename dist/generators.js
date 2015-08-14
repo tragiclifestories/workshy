@@ -253,30 +253,116 @@ exports["default"] = {
         }, drop, this, [[4, 16, 20, 28], [21,, 23, 27]]);
     }),
 
+    fill: regeneratorRuntime.mark(function fill(val, start, end, iterable) {
+        var index, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, x;
+
+        return regeneratorRuntime.wrap(function fill$(context$1$0) {
+            while (1) switch (context$1$0.prev = context$1$0.next) {
+                case 0:
+                    index = 0;
+                    _iteratorNormalCompletion4 = true;
+                    _didIteratorError4 = false;
+                    _iteratorError4 = undefined;
+                    context$1$0.prev = 4;
+                    _iterator4 = iterable[Symbol.iterator]();
+
+                case 6:
+                    if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+                        context$1$0.next = 19;
+                        break;
+                    }
+
+                    x = _step4.value;
+
+                    if (!(fillIsStarted(start, index) && !fillIsComplete(end, index))) {
+                        context$1$0.next = 13;
+                        break;
+                    }
+
+                    context$1$0.next = 11;
+                    return val;
+
+                case 11:
+                    context$1$0.next = 15;
+                    break;
+
+                case 13:
+                    context$1$0.next = 15;
+                    return x;
+
+                case 15:
+                    index++;
+
+                case 16:
+                    _iteratorNormalCompletion4 = true;
+                    context$1$0.next = 6;
+                    break;
+
+                case 19:
+                    context$1$0.next = 25;
+                    break;
+
+                case 21:
+                    context$1$0.prev = 21;
+                    context$1$0.t0 = context$1$0["catch"](4);
+                    _didIteratorError4 = true;
+                    _iteratorError4 = context$1$0.t0;
+
+                case 25:
+                    context$1$0.prev = 25;
+                    context$1$0.prev = 26;
+
+                    if (!_iteratorNormalCompletion4 && _iterator4["return"]) {
+                        _iterator4["return"]();
+                    }
+
+                case 28:
+                    context$1$0.prev = 28;
+
+                    if (!_didIteratorError4) {
+                        context$1$0.next = 31;
+                        break;
+                    }
+
+                    throw _iteratorError4;
+
+                case 31:
+                    return context$1$0.finish(28);
+
+                case 32:
+                    return context$1$0.finish(25);
+
+                case 33:
+                case "end":
+                    return context$1$0.stop();
+            }
+        }, fill, this, [[4, 21, 25, 33], [26,, 28, 32]]);
+    }),
+
     map: regeneratorRuntime.mark(function map(fn, iterable) {
-        var _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, val;
+        var _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, val;
 
         return regeneratorRuntime.wrap(function map$(context$1$0) {
             while (1) switch (context$1$0.prev = context$1$0.next) {
                 case 0:
-                    _iteratorNormalCompletion4 = true;
-                    _didIteratorError4 = false;
-                    _iteratorError4 = undefined;
+                    _iteratorNormalCompletion5 = true;
+                    _didIteratorError5 = false;
+                    _iteratorError5 = undefined;
                     context$1$0.prev = 3;
-                    _iterator4 = iterable[Symbol.iterator]();
+                    _iterator5 = iterable[Symbol.iterator]();
 
                 case 5:
-                    if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+                    if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
                         context$1$0.next = 12;
                         break;
                     }
 
-                    val = _step4.value;
+                    val = _step5.value;
                     context$1$0.next = 9;
                     return fn(val);
 
                 case 9:
-                    _iteratorNormalCompletion4 = true;
+                    _iteratorNormalCompletion5 = true;
                     context$1$0.next = 5;
                     break;
 
@@ -287,26 +373,26 @@ exports["default"] = {
                 case 14:
                     context$1$0.prev = 14;
                     context$1$0.t0 = context$1$0["catch"](3);
-                    _didIteratorError4 = true;
-                    _iteratorError4 = context$1$0.t0;
+                    _didIteratorError5 = true;
+                    _iteratorError5 = context$1$0.t0;
 
                 case 18:
                     context$1$0.prev = 18;
                     context$1$0.prev = 19;
 
-                    if (!_iteratorNormalCompletion4 && _iterator4["return"]) {
-                        _iterator4["return"]();
+                    if (!_iteratorNormalCompletion5 && _iterator5["return"]) {
+                        _iterator5["return"]();
                     }
 
                 case 21:
                     context$1$0.prev = 21;
 
-                    if (!_didIteratorError4) {
+                    if (!_didIteratorError5) {
                         context$1$0.next = 24;
                         break;
                     }
 
-                    throw _iteratorError4;
+                    throw _iteratorError5;
 
                 case 24:
                     return context$1$0.finish(21);
@@ -322,24 +408,24 @@ exports["default"] = {
     }),
 
     filter: regeneratorRuntime.mark(function filter(fn, iterable) {
-        var _iteratorNormalCompletion5, _didIteratorError5, _iteratorError5, _iterator5, _step5, val;
+        var _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, val;
 
         return regeneratorRuntime.wrap(function filter$(context$1$0) {
             while (1) switch (context$1$0.prev = context$1$0.next) {
                 case 0:
-                    _iteratorNormalCompletion5 = true;
-                    _didIteratorError5 = false;
-                    _iteratorError5 = undefined;
+                    _iteratorNormalCompletion6 = true;
+                    _didIteratorError6 = false;
+                    _iteratorError6 = undefined;
                     context$1$0.prev = 3;
-                    _iterator5 = iterable[Symbol.iterator]();
+                    _iterator6 = iterable[Symbol.iterator]();
 
                 case 5:
-                    if (_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done) {
+                    if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
                         context$1$0.next = 13;
                         break;
                     }
 
-                    val = _step5.value;
+                    val = _step6.value;
 
                     if (!fn(val)) {
                         context$1$0.next = 10;
@@ -350,7 +436,7 @@ exports["default"] = {
                     return val;
 
                 case 10:
-                    _iteratorNormalCompletion5 = true;
+                    _iteratorNormalCompletion6 = true;
                     context$1$0.next = 5;
                     break;
 
@@ -361,26 +447,26 @@ exports["default"] = {
                 case 15:
                     context$1$0.prev = 15;
                     context$1$0.t0 = context$1$0["catch"](3);
-                    _didIteratorError5 = true;
-                    _iteratorError5 = context$1$0.t0;
+                    _didIteratorError6 = true;
+                    _iteratorError6 = context$1$0.t0;
 
                 case 19:
                     context$1$0.prev = 19;
                     context$1$0.prev = 20;
 
-                    if (!_iteratorNormalCompletion5 && _iterator5["return"]) {
-                        _iterator5["return"]();
+                    if (!_iteratorNormalCompletion6 && _iterator6["return"]) {
+                        _iterator6["return"]();
                     }
 
                 case 22:
                     context$1$0.prev = 22;
 
-                    if (!_didIteratorError5) {
+                    if (!_didIteratorError6) {
                         context$1$0.next = 25;
                         break;
                     }
 
-                    throw _iteratorError5;
+                    throw _iteratorError6;
 
                 case 25:
                     return context$1$0.finish(22);
@@ -396,25 +482,25 @@ exports["default"] = {
     }),
 
     dropWhile: regeneratorRuntime.mark(function dropWhile(fn, iterable) {
-        var isBlocked, _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, val;
+        var isBlocked, _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, val;
 
         return regeneratorRuntime.wrap(function dropWhile$(context$1$0) {
             while (1) switch (context$1$0.prev = context$1$0.next) {
                 case 0:
                     isBlocked = true;
-                    _iteratorNormalCompletion6 = true;
-                    _didIteratorError6 = false;
-                    _iteratorError6 = undefined;
+                    _iteratorNormalCompletion7 = true;
+                    _didIteratorError7 = false;
+                    _iteratorError7 = undefined;
                     context$1$0.prev = 4;
-                    _iterator6 = iterable[Symbol.iterator]();
+                    _iterator7 = iterable[Symbol.iterator]();
 
                 case 6:
-                    if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
+                    if (_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done) {
                         context$1$0.next = 15;
                         break;
                     }
 
-                    val = _step6.value;
+                    val = _step7.value;
 
                     if (isBlocked) isBlocked = fn(val);
 
@@ -427,7 +513,7 @@ exports["default"] = {
                     return val;
 
                 case 12:
-                    _iteratorNormalCompletion6 = true;
+                    _iteratorNormalCompletion7 = true;
                     context$1$0.next = 6;
                     break;
 
@@ -438,26 +524,26 @@ exports["default"] = {
                 case 17:
                     context$1$0.prev = 17;
                     context$1$0.t0 = context$1$0["catch"](4);
-                    _didIteratorError6 = true;
-                    _iteratorError6 = context$1$0.t0;
+                    _didIteratorError7 = true;
+                    _iteratorError7 = context$1$0.t0;
 
                 case 21:
                     context$1$0.prev = 21;
                     context$1$0.prev = 22;
 
-                    if (!_iteratorNormalCompletion6 && _iterator6["return"]) {
-                        _iterator6["return"]();
+                    if (!_iteratorNormalCompletion7 && _iterator7["return"]) {
+                        _iterator7["return"]();
                     }
 
                 case 24:
                     context$1$0.prev = 24;
 
-                    if (!_didIteratorError6) {
+                    if (!_didIteratorError7) {
                         context$1$0.next = 27;
                         break;
                     }
 
-                    throw _iteratorError6;
+                    throw _iteratorError7;
 
                 case 27:
                     return context$1$0.finish(24);
@@ -473,25 +559,25 @@ exports["default"] = {
     }),
 
     takeWhile: regeneratorRuntime.mark(function takeWhile(fn, iterable) {
-        var isOpen, _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, val;
+        var isOpen, _iteratorNormalCompletion8, _didIteratorError8, _iteratorError8, _iterator8, _step8, val;
 
         return regeneratorRuntime.wrap(function takeWhile$(context$1$0) {
             while (1) switch (context$1$0.prev = context$1$0.next) {
                 case 0:
                     isOpen = true;
-                    _iteratorNormalCompletion7 = true;
-                    _didIteratorError7 = false;
-                    _iteratorError7 = undefined;
+                    _iteratorNormalCompletion8 = true;
+                    _didIteratorError8 = false;
+                    _iteratorError8 = undefined;
                     context$1$0.prev = 4;
-                    _iterator7 = iterable[Symbol.iterator]();
+                    _iterator8 = iterable[Symbol.iterator]();
 
                 case 6:
-                    if (_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done) {
+                    if (_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done) {
                         context$1$0.next = 19;
                         break;
                     }
 
-                    val = _step7.value;
+                    val = _step8.value;
 
                     if (!isOpen) {
                         context$1$0.next = 15;
@@ -516,7 +602,7 @@ exports["default"] = {
                     return context$1$0.abrupt("break", 19);
 
                 case 16:
-                    _iteratorNormalCompletion7 = true;
+                    _iteratorNormalCompletion8 = true;
                     context$1$0.next = 6;
                     break;
 
@@ -527,26 +613,26 @@ exports["default"] = {
                 case 21:
                     context$1$0.prev = 21;
                     context$1$0.t1 = context$1$0["catch"](4);
-                    _didIteratorError7 = true;
-                    _iteratorError7 = context$1$0.t1;
+                    _didIteratorError8 = true;
+                    _iteratorError8 = context$1$0.t1;
 
                 case 25:
                     context$1$0.prev = 25;
                     context$1$0.prev = 26;
 
-                    if (!_iteratorNormalCompletion7 && _iterator7["return"]) {
-                        _iterator7["return"]();
+                    if (!_iteratorNormalCompletion8 && _iterator8["return"]) {
+                        _iterator8["return"]();
                     }
 
                 case 28:
                     context$1$0.prev = 28;
 
-                    if (!_didIteratorError7) {
+                    if (!_didIteratorError8) {
                         context$1$0.next = 31;
                         break;
                     }
 
-                    throw _iteratorError7;
+                    throw _iteratorError8;
 
                 case 31:
                     return context$1$0.finish(28);
@@ -561,5 +647,13 @@ exports["default"] = {
         }, takeWhile, this, [[4, 21, 25, 33], [26,, 28, 32]]);
     })
 };
+
+function fillIsStarted(start, index) {
+    return start <= index || !start;
+}
+
+function fillIsComplete(end, index) {
+    if (typeof end === "undefined") return false;else return end - 1 < index;
+}
 module.exports = exports["default"];
 //# sourceMappingURL=generators.js.map

@@ -34,6 +34,11 @@ var LazySeq = (function () {
             return new LazySeq(_generators2['default'].chunk, [n], this);
         }
     }, {
+        key: 'fill',
+        value: function fill(val, start, end) {
+            return new LazySeq(_generators2['default'].fill, [val, start, end], this);
+        }
+    }, {
         key: 'compact',
         value: function compact() {
             return this.filter(function (x) {

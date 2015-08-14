@@ -28,6 +28,15 @@ export default {
         }
     },
 
+    fill: function* (val, start, end, iterable) {
+        let index = 0;
+        for (let x of iterable) {
+            if (fillIsStarted(start, index) && !fillIsComplete(end, index)) yield val;
+            else yield x;
+            index++;
+        } 
+    },
+
     map: function* (fn, iterable) {
         for (let val of iterable) yield fn(val);
     },
@@ -54,3 +63,12 @@ export default {
         }
     }
 };
+
+function fillIsStarted(start, index) {
+    return start <= index || !start;
+}
+
+function fillIsComplete(end, index) {
+    if (typeof end === "undefined") return false;
+    else return end - 1 < index;
+}

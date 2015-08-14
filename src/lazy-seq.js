@@ -15,6 +15,10 @@ class LazySeq {
         return new LazySeq(generators.chunk, [n], this);
     }
 
+    fill(val, start, end) {
+        return new LazySeq(generators.fill, [val, start, end], this);
+    }
+
     compact() {
         return this.filter((x) => x);
     }

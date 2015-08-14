@@ -133,6 +133,29 @@ describe('class LazySeq', function () {
         });
     });
 
+    describe('.fill', function () {
+        it('repeats single value with no optional args', function () {
+            let fillSeq = intSeq().fill(0), 
+                [a, b, c] = fillSeq;
+
+            expect([a, b, c]).to.eql([0,0,0]);
+        });
+
+        it('accepts a start param', function () {
+            let fillSeq = intSeq().fill(0, 2), 
+                [a, b, c] = fillSeq;
+
+            expect([a, b, c]).to.eql([0,1,0]);
+        });
+
+        it('accepts an end param', function () {
+            let fillSeq = intSeq().fill(0, 1, 2),
+                [a, b, c] = fillSeq;
+
+            expect([a,b,c]).to.eql([0,0,2]);
+        });
+    });
+
     describe('reductions', function () {
         describe('.reduce', function () {
             it('reduces from first element', function () {
