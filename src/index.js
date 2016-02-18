@@ -1,4 +1,4 @@
 require('babel/polyfill');
-import intSeq from './int-seq';
+import { count } from './sequences';
 import LazySeq from './lazy-seq';
-export default { intSeq, LazySeq };
+export default { count, LazySeq };

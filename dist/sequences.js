@@ -3,6 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
+exports.count = count;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -12,7 +13,7 @@ var _lazySeq = require('./lazy-seq');
 
 var _lazySeq2 = _interopRequireDefault(_lazySeq);
 
-function intSeq(start, end) {
+function count(start, end) {
     var seq = new _lazySeq2['default'](intGen, [start]);
     if (typeof end === 'undefined') return seq;
     return seq.takeWhile(function (x) {
@@ -46,8 +47,5 @@ function intGen(start) {
         }
     }, marked0$0[0], this);
 }
-
 //eslint-disable-line no-constant-condition
-exports['default'] = intSeq;
-module.exports = exports['default'];
-//# sourceMappingURL=int-seq.js.map
+//# sourceMappingURL=sequences.js.map

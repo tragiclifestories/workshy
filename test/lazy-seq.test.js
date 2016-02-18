@@ -1,5 +1,5 @@
 import LazySeq from '../dist/lazy-seq';
-import intSeq from '../dist/int-seq';
+import { count } from '../dist/sequences';
 
 function force (seq) {
     let result = [];
@@ -41,7 +41,7 @@ describe('class LazySeq', function () {
 
     describe('.drop', function () {
         it('ignores the first n values in a seq', function () {
-            let dropSeq = intSeq().drop(5),
+            let dropSeq = count().drop(5),
                 [a, b, c] = dropSeq;
             expect([a, b, c]).to.eql([5,6,7]);
         });
@@ -72,7 +72,7 @@ describe('class LazySeq', function () {
 
     describe('.dropWhile', function () {
         it('ignores values until predicate is false', function () {
-            let dwSeq = intSeq(1).dropWhile((x) => x % 12 !== 0),
+            let dwSeq = count(1).dropWhile((x) => x % 12 !== 0),
                 [a, b, c] = dwSeq;
             expect([a, b, c]).to.eql([12, 13, 14]);     
         });
@@ -80,7 +80,7 @@ describe('class LazySeq', function () {
 
     describe('.takeWhile', function () {
         it('takes values until predicate is false', function () {
-            let twSeq = intSeq(4).takeWhile((x) => (x * x) % 6 !== 0),
+            let twSeq = count(4).takeWhile((x) => (x * x) % 6 !== 0),
                 [a, b, c] = twSeq;
             expect([a, b, c]).to.eql([4, 5, undefined]);
         });
@@ -88,7 +88,7 @@ describe('class LazySeq', function () {
 
     describe('.takeUntil', function () {
         it('takes values until predicate is true', function () {
-            let tuSeq = intSeq(4).takeUntil((x) => (x * x) % 6 === 0),
+            let tuSeq = count(4).takeUntil((x) => (x * x) % 6 === 0),
                 [a, b, c] = tuSeq;
             expect([a, b, c]).to.eql([4, 5, undefined]);
         });
@@ -96,7 +96,7 @@ describe('class LazySeq', function () {
 
     describe('.dropUntil', function () {
         it('ignores values until predicate is true', function () {
-            let duSeq = intSeq(1).dropUntil((x) => x % 12 === 0),
+            let duSeq = count(1).dropUntil((x) => x % 12 === 0),
                 [a, b, c] = duSeq;
             expect([a, b, c]).to.eql([12, 13, 14]);
         });
@@ -104,21 +104,21 @@ describe('class LazySeq', function () {
 
     describe('.chunk', function () {
         it('yields n-length arrays from parent', function () {
-            let chunkSeq = intSeq(1).chunk(5),
+            let chunkSeq = count(1).chunk(5),
                 [a] = chunkSeq;
 
             expect(a).to.eql([1,2,3,4,5]);
         });
 
         it('yields remainder if n > remaining values', function () {
-            let chunkSeq = intSeq(1).take(3).chunk(5),
+            let chunkSeq = count(1).take(3).chunk(5),
                 [a] = chunkSeq;
 
             expect(a).to.eql([1,2,3]);
         });
 
         it('defaults n to 1', function () {
-            let chunkSeq = intSeq(1).chunk(),
+            let chunkSeq = count(1).chunk(),
                 [a] = chunkSeq;            
             expect(a).to.eql([1]);
         });
@@ -126,7 +126,7 @@ describe('class LazySeq', function () {
 
     describe('.compact', function () {
         it('yields only truthy values', function () {
-            let compactSeq = intSeq().compact(),
+            let compactSeq = count().compact(),
                 [a] = compactSeq;
 
             expect(a).to.equal(1);
@@ -135,21 +135,21 @@ describe('class LazySeq', function () {
 
     describe('.fill', function () {
         it('repeats single value with no optional args', function () {
-            let fillSeq = intSeq().fill(0), 
+            let fillSeq = count().fill(0), 
                 [a, b, c] = fillSeq;
 
             expect([a, b, c]).to.eql([0,0,0]);
         });
 
         it('accepts a start param', function () {
-            let fillSeq = intSeq().fill(0, 2), 
+            let fillSeq = count().fill(0, 2), 
                 [a, b, c] = fillSeq;
 
             expect([a, b, c]).to.eql([0,1,0]);
         });
 
         it('accepts an end param', function () {
-            let fillSeq = intSeq().fill(0, 1, 2),
+            let fillSeq = count().fill(0, 1, 2),
                 [a, b, c] = fillSeq;
 
             expect([a,b,c]).to.eql([0,0,2]);

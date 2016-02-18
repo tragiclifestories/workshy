@@ -63,10 +63,9 @@ class LazySeq {
 
     reduce(fn, acc) {
         let i = 0;
-        for (let val of this) {
+        for (let val of this) 
             if (!i++ && typeof acc === 'undefined') acc = val;
             else acc = fn(acc, val);
-        }
 
         return acc;
     }

@@ -2,13 +2,13 @@ export default {
     chunk: function* (n, iterable) {
         if (!n || n < 1) n = 1;
         let currentChunk = [];
-        for (let val of iterable) {
+        for (let val of iterable) 
             if (currentChunk.length < n) currentChunk.push(val);
             else {
                 yield currentChunk;
                 currentChunk = [];
             }
-        }
+    
         yield currentChunk;
     },
 
@@ -23,9 +23,8 @@ export default {
 
     drop: function *(n, iterable) {
         let x = 0;
-        for (let val of iterable) {
-            if (n <= x++) yield val; 
-        }
+        for (let val of iterable) 
+            if (n <= x++) yield val;
     },
 
     fill: function* (val, start, end, iterable) {
@@ -42,9 +41,8 @@ export default {
     },
 
     filter: function* (fn, iterable) {
-        for (let val of iterable) {
+        for (let val of iterable) 
             if (fn(val)) yield val; 
-        }
     },
 
     dropWhile: function* (fn, iterable) {
@@ -57,10 +55,9 @@ export default {
 
     takeWhile: function* (fn, iterable) {
         let isOpen = true;
-        for (let val of iterable) {
+        for (let val of iterable) 
             if (isOpen) (isOpen = fn(val)) && (yield val);
             else break;
-        }
     }
 };
 
