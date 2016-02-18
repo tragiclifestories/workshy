@@ -92,6 +92,86 @@ exports["default"] = {
         }, chunk, this, [[5, 21, 25, 33], [26,, 28, 32]]);
     }),
 
+    repeatedly: regeneratorRuntime.mark(function repeatedly(f, n) {
+        var i;
+        return regeneratorRuntime.wrap(function repeatedly$(context$1$0) {
+            while (1) switch (context$1$0.prev = context$1$0.next) {
+                case 0:
+                    if (n) {
+                        context$1$0.next = 8;
+                        break;
+                    }
+
+                case 1:
+                    if (!true) {
+                        context$1$0.next = 6;
+                        break;
+                    }
+
+                    context$1$0.next = 4;
+                    return f();
+
+                case 4:
+                    context$1$0.next = 1;
+                    break;
+
+                case 6:
+                    context$1$0.next = 14;
+                    break;
+
+                case 8:
+                    i = 0;
+
+                case 9:
+                    if (!(i++ < n)) {
+                        context$1$0.next = 14;
+                        break;
+                    }
+
+                    context$1$0.next = 12;
+                    return f();
+
+                case 12:
+                    context$1$0.next = 9;
+                    break;
+
+                case 14:
+                case "end":
+                    return context$1$0.stop();
+            }
+        }, repeatedly, this);
+    }),
+
+    iterate: regeneratorRuntime.mark(function iterate(f, initial) {
+        var acc;
+        return regeneratorRuntime.wrap(function iterate$(context$1$0) {
+            while (1) switch (context$1$0.prev = context$1$0.next) {
+                case 0:
+                    acc = initial;
+                    context$1$0.next = 3;
+                    return acc;
+
+                case 3:
+                    if (!true) {
+                        context$1$0.next = 8;
+                        break;
+                    }
+
+                    context$1$0.next = 6;
+                    return acc = f(acc);
+
+                case 6:
+                    context$1$0.next = 3;
+                    break;
+
+                case 8:
+                case "end":
+                    return context$1$0.stop();
+            }
+        }, iterate, this);
+    }),
+
+    //eslint-disable-line no-constant-condition
     take: regeneratorRuntime.mark(function take(n, iterable) {
         var x, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, val;
 
@@ -656,4 +736,5 @@ function fillIsComplete(end, index) {
     if (typeof end === "undefined") return false;else return end - 1 < index;
 }
 module.exports = exports["default"];
+//eslint-disable-line no-constant-condition
 //# sourceMappingURL=generators.js.map

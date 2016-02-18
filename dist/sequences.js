@@ -4,48 +4,38 @@ Object.defineProperty(exports, '__esModule', {
     value: true
 });
 exports.count = count;
+exports.repeatedly = repeatedly;
+exports.iterate = iterate;
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var marked0$0 = [intGen].map(regeneratorRuntime.mark);
 
 var _lazySeq = require('./lazy-seq');
 
 var _lazySeq2 = _interopRequireDefault(_lazySeq);
 
+var _generators = require('./generators');
+
+var g = _interopRequireWildcard(_generators);
+
 function count(start, end) {
-    var seq = new _lazySeq2['default'](intGen, [start]);
+    var seq = new _lazySeq2['default'](g.iterate, [function (x) {
+        return x + 1;
+    }, start || 0]);
     if (typeof end === 'undefined') return seq;
     return seq.takeWhile(function (x) {
         return x < end;
     });
 }
 
-function intGen(start) {
-    var x;
-    return regeneratorRuntime.wrap(function intGen$(context$1$0) {
-        while (1) switch (context$1$0.prev = context$1$0.next) {
-            case 0:
-                x = start || 0;
-
-            case 1:
-                if (!true) {
-                    context$1$0.next = 6;
-                    break;
-                }
-
-                context$1$0.next = 4;
-                return x++;
-
-            case 4:
-                context$1$0.next = 1;
-                break;
-
-            case 6:
-            case 'end':
-                return context$1$0.stop();
-        }
-    }, marked0$0[0], this);
+function repeatedly(f, n) {
+    return new _lazySeq2['default'](g.repeatedly, [f, n]);
 }
-//eslint-disable-line no-constant-condition
+
+function iterate(f, initial) {
+    var seq = new _lazySeq2['default'](g.iterate, [f, initial]);
+
+    return seq;
+}
 //# sourceMappingURL=sequences.js.map

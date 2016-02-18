@@ -12,6 +12,21 @@ export default {
         yield currentChunk;
     },
 
+    repeatedly: function* (f, n) {
+        if (!n)
+            while (true) yield f(); //eslint-disable-line no-constant-condition
+        else {
+            let i = 0;
+            while (i++ < n) yield f();
+        } 
+    },
+
+    iterate: function* (f, initial) {
+        let acc = initial;
+        yield acc;
+        while (true) yield acc = f(acc); //eslint-disable-line no-constant-condition
+    },
+
     take: function* (n, iterable) {
         let x = 0;
         if (n === 0) return;
