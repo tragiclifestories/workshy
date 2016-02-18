@@ -15,41 +15,12 @@ class LazySeq {
         return new LazySeq(generators.chunk, [n], this);
     }
 
-    fill(val, start, end) {
-        return new LazySeq(generators.fill, [val, start, end], this);
-    }
-
     compact() {
         return this.filter((x) => x);
     }
 
-    take(n) {
-        return new LazySeq(generators.take, [n], this);
-    }
-
     drop(n) {
         return new LazySeq(generators.drop, [n], this);
-    }
-
-    map(fn) {
-        return new LazySeq(generators.map, [fn], this);
-    }
-
-    filter(fn) {
-        return new LazySeq(generators.filter, [fn], this);
-    }
-
-    dropWhile(fn) {
-        return new LazySeq(generators.dropWhile, [fn], this);
-    }
-
-    takeWhile(fn) {
-        return new LazySeq(generators.takeWhile, [fn], this);
-    }
-
-    takeUntil(fn) {
-        let inverted = (x) => !(fn(x));
-        return this.takeWhile(inverted);
     }
 
     dropUntil(fn) {
@@ -57,8 +28,20 @@ class LazySeq {
         return this.dropWhile(inverted);   
     }
 
-    toArray() {
-        return this.reduce((acc, item) => acc.concat([item]), []);
+    dropWhile(fn) {
+        return new LazySeq(generators.dropWhile, [fn], this);
+    }
+    
+    fill(val, start, end) {
+        return new LazySeq(generators.fill, [val, start, end], this);
+    }
+
+    filter(fn) {
+        return new LazySeq(generators.filter, [fn], this);
+    }
+    
+    map(fn) {
+        return new LazySeq(generators.map, [fn], this);
     }
 
     reduce(fn, acc) {
@@ -68,6 +51,23 @@ class LazySeq {
             else acc = fn(acc, val);
 
         return acc;
+    }
+
+    take(n) {
+        return new LazySeq(generators.take, [n], this);
+    }
+
+    takeUntil(fn) {
+        let inverted = (x) => !(fn(x));
+        return this.takeWhile(inverted);
+    }
+
+    takeWhile(fn) {
+        return new LazySeq(generators.takeWhile, [fn], this);
+    }
+
+    toArray() {
+        return this.reduce((acc, item) => acc.concat([item]), []);
     }
 }
 
