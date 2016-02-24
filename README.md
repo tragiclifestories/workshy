@@ -37,7 +37,7 @@ Generate a sequence of values from repeatedly calling fn, infinitely or `n` time
 ```js
 import { repeatedly } from 'workshy/dist/sequences';
 let [a, b, c] = repeatedly(() => 1); // a == 1, b == 1, c == 1
-let [a, b, c] = count(() => 1, 2); // a == 1, b == 2, c == undefined
+let [a, b, c] = repeatedly(() => 1, 2); // a == 1, b == 1, c == undefined
 ```
 
 #### `sequences.iterate(fn, initialValue)`
@@ -45,9 +45,8 @@ let [a, b, c] = count(() => 1, 2); // a == 1, b == 2, c == undefined
 On first call, yield the result of `fn(initialValue)`. On second call, yield the result of `fn(fn(initialValue))` - and so on.
 
 ```js
-import { repeatedly } from 'workshy/dist/sequences';
-let [a, b, c] = repeatedly(() => 1); // a == 1, b == 1, c == 1
-let [a, b, c] = count(() => 1, 2); // a == 1, b == 2, c == undefined
+import { iterate } from 'workshy/dist/sequences';
+let [a, b, c] = iterate((x) => x + 1, 0); // a == 1, b == 2, c == 3
 ```
 
 ### class LazySeq
